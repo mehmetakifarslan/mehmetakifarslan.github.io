@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <meta charset="utf-8">
+        
+        <title>Calculator</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        
+    </head>
+    
+    <body>
+    	<center><table>
+	<tr>
+		<td>|</td>
+		<td><a href="home.html">Home</a></td>
+		<td>|</td>
+		<td><a href="localdishes"></a></td>
+		<td>|</td>
+		<td><a href="historicalplaces.html">Historical Places</a></td>
+		<td>|</td>
+		<td><a href="usefullinks.html">Useful Links</a></td>
+		<td>|</td>
+		<td><a href="aboutme.html">About Me</a></td>
+		<td>|</td>
+		<td><a href="contactme.html">Contact Me</a></td>
+		<td>|</td>
+		<td><a href="registration.html">Registration</a></td>
+		<td>|</td>
+	</tr>
+</table></center>
+        <center>
+            <div class="calculator">
+                <center> <input type="text" value="0" id="text" class="numbersbox" readonly> </center>
+                
+                <div>
+                    <input type="button" value="7" class="button" onclick="write(7)">
+                    <input type="button" value="8" class="button" onclick="write(8)">
+                    <input type="button" value="9" class="button" onclick="write(9)">
+                </div>
+                
+                <br>
+                
+                <div>
+                    <input type="button" value="4" class="button" onclick="write(4)">
+                    <input type="button" value="5" class="button" onclick="write(5)">
+                    <input type="button" value="6" class="button" onclick="write(6)">
+                </div>
+                
+                <br>
+                
+                <div>
+                    <input type="button" value="1" class="button" onclick="write(1)">
+                    <input type="button" value="2" class="button" onclick="write(2)">
+                    <input type="button" value="3" class="button" onclick="write(3)">
+                </div>
+                
+                <br>
+                
+                <div>
+                    <input type="button" value="0" class="button" onclick="write(0)">
+                    <input type="button" value="." class="button" onclick="appendDot()">
+                    <input type="button" value="/" class="button" onclick="divide()">
+                </div>
+                
+                <br>
+                
+                <div>
+                    <input type="button" value="+" class="button" onclick="add()">
+                    <input type="button" value="-" class="button" onclick="subtract()">
+                    <input type="button" value="*" class="button" onclick="multiply()">
+                </div>
+                
+                <br>
+                
+                <div>
+                    <input type="button" value="1/x" class="button" onclick="oneover()">
+					<input type="button" value="C"   class="button" onclick="reset()">
+                    <input type="button" value="="   class="button" onclick="equals()">
+                </div>
+            </div>
+        </center>
+		
+		<script>
+			var inputField = document.getElementById('text');
+			
+			function write (number) {
+				inputField.value = inputField.value == "0" ? String(number): inputField.value + String(number);
+			}
+			
+			function appendDot() {
+				inputField.value += ".";
+			}
+			
+			function reset() {
+				inputField.value = "0";
+			}
+			
+			function add() {
+				if(inputField.value.includes("+")) {
+					return;
+				}
+				
+				inputField.value += " + ";
+			}
+			
+			function subtract() {
+				if(inputField.value.includes("-")) {
+					return;
+				}
+				
+				inputField.value += " - ";
+			}
+			
+			function multiply() {
+				if(inputField.value.includes("*")) {
+					return;
+				}
+				
+				inputField.value += " * ";
+			}
+			
+			function divide() {
+				if(inputField.value.includes("/")) {
+					return;
+				}
+				
+				inputField.value += " / ";
+			}
+			
+			function oneover() {
+				inputField.value = parseFloat(1 / inputField.value);
+			}
+			
+			function equals() {
+				if(inputField.value.includes("+")) {
+					inputField.value = String(parseFloat(inputField.value.split('+')[0].substr(0, inputField.value.split('+')[0].length)) + parseFloat(inputField.value.split('+')[1].substr(0, inputField.value.split('+')[1].length)));
+				} else if(inputField.value.includes("-")) {
+					inputField.value = String(parseFloat(inputField.value.split('-')[0].substr(0, inputField.value.split('-')[0].length)) - parseFloat(inputField.value.split('-')[1].substr(0, inputField.value.split('-')[1].length)));
+				} else if(inputField.value.includes("*")) {
+					inputField.value = String(parseFloat(inputField.value.split('*')[0].substr(0, inputField.value.split('*')[0].length)) * parseFloat(inputField.value.split('*')[1].substr(0, inputField.value.split('*')[1].length)));
+				} else if(inputField.value.includes("/")) {
+					inputField.value = String(parseFloat(inputField.value.split('/')[0].substr(0, inputField.value.split('/')[0].length)) / parseFloat(inputField.value.split('/')[1].substr(0, inputField.value.split('/')[1].length)));
+				}
+			}
+		</script>
+        
+    </body>
+    
+</html>
